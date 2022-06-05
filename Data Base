@@ -1,0 +1,8 @@
+CREATE TABLE `perpus` (
+`no_buku` INT( 11 ) NOT NULL ,
+`judul_buku` VARCHAR( 100 ) NOT NULL ,
+`pengarang` VARCHAR( 30 ) NOT NULL ,
+`tahun` INT( 4 ) NOT NULL ,
+`penerbit` VARCHAR( 100 ) NOT NULL ,
+PRIMARY KEY ( `no_buku` )
+) ENGINE = INNODB DEFAULT CHARSET = latin1;
