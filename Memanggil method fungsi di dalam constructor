@@ -1,0 +1,5 @@
+setTitle("Perpustakaan");
+koneksi();
+tabel();
+kosongkan();
+ClearTabel();
