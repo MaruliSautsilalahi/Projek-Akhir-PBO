@@ -1,0 +1,56 @@
+try {
+stat.executeUpdate("insert into perpus values ("
++ "'" + no.getText()+"',"
++ "'" + judul.getText()+"',"
++ "'" + pengarang.getText()+ "',"
++ "'" + tahun.getText()+ "',"
++ "'" + penerbit.getText()+ "')"
+);
+
+
+kosongkan();//Mengosongkan text field setelah berhasil menyimpan data
+tabel();// Menampilkan isi tabel
+JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan...");
+} catch (Exception e) {
+JOptionPane.showMessageDialog(null, "Keterangan Error : "+e);
+}
+try {
+stat.executeUpdate("update perpus set "
++ "judul_buku='"+judul.getText()+"',"
++ "pengarang='"+pengarang.getText()+"',"
++ "tahun='"+tahun.getText()+"',"
++ "penerbit='"+penerbit.getText()+"'"
++ " where "
++ "no_buku='"+no.getText()+"'"
+);
+kosongkan();
+tabel();
+JOptionPane.showMessageDialog(rootPane, "Data berhasil Diupdate");
+} catch (Exception e) {
+JOptionPane.showMessageDialog(rootPane, e);
+}
+try {
+stat.executeUpdate("delete from perpus where "
++ "no_buku='"+no.getText()+"'"
+);
+kosongkan();
+tabel();
+JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+} catch (Exception e) {
+JOptionPane.showMessageDialog(null, "pesan salah : "+e);
+}
+try {
+//melakukan pencarian data berdasarkan primary key pada tabel
+res=stat.executeQuery("select * from perpus where "+ "no_buku='"+no.getText()+"'"
+);
+
+while (res.next()) {
+judul.setText(res.getString("judul_buku"));
+pengarang.setText(res.getString("pengarang"));
+tahun.setText(res.getString("tahun"));
+penerbit.setText(res.getString("penerbit"));
+}
+
+} catch (Exception e) {
+JOptionPane.showMessageDialog(rootPane, e);
+}
