@@ -1,0 +1,56 @@
+//membuat koneksi kedatabase
+private void koneksi(){
+try {
+Class.forName("com.mysql.jdbc.Driver");
+con=DriverManager.getConnection("jdbc:mysql://localhost/perpustakaan", "", "");
+stat=con.createStatement();
+} catch (Exception e) {
+JOptionPane.showMessageDialog(null, e);
+}
+}
+private void tabel(){
+DefaultTableModel tb= new DefaultTableModel();
+// Memberi nama pada setiap kolom tabel
+tb.addColumn("No.Buku");
+tb.addColumn("Judul Buku");
+tb.addColumn("Pengarang");
+tb.addColumn("Tahun");
+tb.addColumn("Penerbit");
+tabel.setModel(tb);
+try{
+// Mengambil data dari database
+res=stat.executeQuery("select * from perpus");
+
+while (res.next())
+{
+// Mengambil data dari database berdasarkan nama kolom pada tabel
+// Lalu di tampilkan ke dalam JTable
+tb.addRow(new Object[]{
+res.getInt("no_buku"),
+res.getString("judul_buku"),
+res.getString("pengarang"),
+res.getInt("tahun"),
+res.getString("penerbit")
+});
+}
+
+}catch (Exception e){
+}
+}
+private void kosongkan(){
+no.setText("");
+judul.setText("");
+pengarang.setText("");
+tahun.setText("");
+penerbit.setText("");
+no.requestFocus();
+}
+
+private void ClearTabel(){
+int cb=tabel.getRowCount();
+int cc=tabel.getColumnCount();
+for (int i=0;i<cb;i++)
+for (int j=0;j<cc;j++)
+{tabel.setValueAt(null, i, j);
+}
+}
