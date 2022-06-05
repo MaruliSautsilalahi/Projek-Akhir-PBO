@@ -1,0 +1,3 @@
+private Connection con;
+private Statement stat;
+private ResultSet res;
